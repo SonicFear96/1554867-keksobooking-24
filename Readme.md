@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Богдан Рудаков](https://up.htmlacademy.ru/javascript/24/user/1554867).
-* Наставник: `Неизвестно`.
+- Студент: [Богдан Рудаков](https://up.htmlacademy.ru/javascript/24/user/1554867).
+- Наставник: [Игорь Агапов](https://htmlacademy.ru/profile/id1034633).
 
 ---
 

@@ -69,6 +69,7 @@ const PHOTOS = [
 const COORDINATIONX = getRandomPositiveFloat(35.65, 35.7, 5);
 const COORDINATIONY = getRandomPositiveFloat(139.7, 139.8, 5);
 
+
 // Аватар (но числа повторяются...)
 // let numAvatarCache = [];
 // function getAvatar() {

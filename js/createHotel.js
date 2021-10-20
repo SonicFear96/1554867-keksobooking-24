@@ -38,3 +38,7 @@ export const createHotel = () => ({
     lng: COORDINATIONY,
   },
 });
+
+const createHotels  = () => Array.from({ length: 10 }, createHotel);
+
+export {createHotels};

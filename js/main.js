@@ -1,5 +1,5 @@
-import { useNonActiveState, useActiveState } from "./state.js";
-import "./popup.js";
+import { useNonActiveState, useActiveState } from './state.js';
+import './popup.js';
 
 useNonActiveState();
 useActiveState();

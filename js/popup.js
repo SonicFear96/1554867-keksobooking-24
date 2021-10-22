@@ -45,7 +45,7 @@ similarHotels.forEach((hotel) => {
     const photosItem = document.createElement('img');
     photosItem.className = 'popup__photo';
     photosItem.src = photo;
-    photos.prepend(photosItem);
+    photos.append(photosItem);
   });
   hotelElement.querySelector('.popup__avatar').src = hotel.author.avatar;
   mapCanvas.append(hotelElement);

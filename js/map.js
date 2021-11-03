@@ -1,8 +1,10 @@
 import { useActiveState } from './state.js';
-import { getRandomPositiveFloat } from './utils/get-random-positive-float.js';
+import { createHotels } from './createHotel.js';
+import {createCustomPopup} from './popup.js'
+// import {similarHotels, similarHotelTemplate} from './popup.js'
 
-const TOKYO_LAT = 35.4200;
-const TOKYO_LNG = 139.2530;
+const TOKYO_LAT = 35.6895;
+const TOKYO_LNG = 139.6920;
 
 const map = L.map('map-canvas').on('load', () => {
   useActiveState()
@@ -36,11 +38,36 @@ const mainPinMarker = L.marker(
   },
 );
 
-address.setAttribute('placeholder', `${TOKYO_LAT}, ${TOKYO_LNG}`);
-
 mainPinMarker.addTo(map);
 
+
+/*massive hotels */
+const similarHotels = createHotels();
+
+similarHotels.forEach((hotel) => {
+  const icon = L.icon({
+    iconUrl: './img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+
+  const marker = L.marker(
+    {
+      lat: hotel.location.lat,
+      lng: hotel.location.lng,
+    },
+    {
+      icon,
+    },
+  );
+
+  marker.addTo(map).bindPopup(createCustomPopup(hotel));
+});
+
+/*Placeholder */
+
+address.setAttribute('placeholder', `${TOKYO_LAT}, ${TOKYO_LNG}`);
+
 mainPinMarker.on('moveend', (evt) => {
-  // console.log(evt.target.getLatLng());
   address.setAttribute('placeholder', `${parseFloat((evt.target.getLatLng().lat).toFixed(4))}, ${parseFloat((evt.target.getLatLng().lng)).toFixed(4)}`);
 });

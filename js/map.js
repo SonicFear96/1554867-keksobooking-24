@@ -1,7 +1,8 @@
-import { useNonActiveState, useActiveState } from './state.js';
+import { useActiveState } from './state.js';
+import { getRandomPositiveFloat } from './utils/get-random-positive-float.js';
 
-const TOKYO_LAT = 35.41220;
-const TOKYO_LNG = 139.41300;
+const TOKYO_LAT = 35.4200;
+const TOKYO_LNG = 139.2530;
 
 const map = L.map('map-canvas').on('load', () => {
   useActiveState()
@@ -18,3 +19,28 @@ L.tileLayer(
   },
 ).addTo(map);
 
+const mainPinIcon = L.icon({
+  iconUrl: '../img/main-pin.svg',
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
+
+const mainPinMarker = L.marker(
+  {
+    lat: TOKYO_LAT,
+    lng: TOKYO_LNG,
+  },
+  {
+    draggable: true,
+    icon: mainPinIcon,
+  },
+);
+
+address.setAttribute('placeholder', `${TOKYO_LAT}, ${TOKYO_LNG}`);
+
+mainPinMarker.addTo(map);
+
+mainPinMarker.on('moveend', (evt) => {
+  // console.log(evt.target.getLatLng());
+  address.setAttribute('placeholder', `${parseFloat((evt.target.getLatLng().lat).toFixed(4))}, ${parseFloat((evt.target.getLatLng().lng)).toFixed(4)}`);
+});

@@ -11,6 +11,7 @@ const guestNumberInput = document.querySelector('#capacity');
 const typeAccommodation = document.querySelector('#type')
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
+const address = document.querySelector('#adress')
 
 titleInput.addEventListener('input', () => {
   const valueLength = titleInput.value.length;
@@ -92,3 +93,4 @@ typeAccommodation.addEventListener('change', () => {
       break;
   }
 });
+

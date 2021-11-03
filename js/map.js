@@ -1,13 +1,13 @@
 import { useActiveState } from './state.js';
 import { createHotels } from './createHotel.js';
-import {createCustomPopup} from './popup.js'
+import {createCustomPopup} from './popup.js';
 // import {similarHotels, similarHotelTemplate} from './popup.js'
-
+const address = document.querySelector('#adress');
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.6920;
 
 const map = L.map('map-canvas').on('load', () => {
-  useActiveState()
+  useActiveState();
 })
   .setView({
     lat: TOKYO_LAT,

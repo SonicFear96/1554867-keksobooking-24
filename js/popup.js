@@ -95,8 +95,8 @@ const createCustomPopup = (hotel) => {
     photos.append(photosItem);
   });
   hotelElement.querySelector('.popup__avatar').src = hotel.author.avatar;
-  return hotelElement
+  return hotelElement;
 };
 
 // export {similarHotelTemplate, similarHotels};
-export {createCustomPopup}
+export {createCustomPopup};

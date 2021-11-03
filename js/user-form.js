@@ -8,10 +8,10 @@ const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = document.querySelector('#room_number');
 const guestNumberInput = document.querySelector('#capacity');
-const typeAccommodation = document.querySelector('#type')
+const typeAccommodation = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
-const address = document.querySelector('#adress')
+
 
 titleInput.addEventListener('input', () => {
   const valueLength = titleInput.value.length;

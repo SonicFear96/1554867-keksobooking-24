@@ -8,6 +8,9 @@ const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = document.querySelector('#room_number');
 const guestNumberInput = document.querySelector('#capacity');
+const typeAccommodation = document.querySelector('#type')
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
 
 titleInput.addEventListener('input', () => {
   const valueLength = titleInput.value.length;
@@ -49,3 +52,43 @@ const onSelectRoomChange = () => {
 roomNumberInput.addEventListener('change', onSelectRoomChange);
 guestNumberInput.addEventListener('change', onSelectRoomChange);
 
+
+/*time in/time out*/
+
+const getSameTimeIn = () => {
+  timeIn.value = timeOut.value;
+};
+
+const getSameTimeOut = () => {
+  timeOut.value = timeIn.value;
+};
+
+timeIn.addEventListener('change', getSameTimeOut);
+timeOut.addEventListener('change', getSameTimeIn);
+
+/*TYPE */
+
+typeAccommodation.addEventListener('change', () => {
+  switch (typeAccommodation.value) {
+    case 'flat':
+      priceInput.setAttribute('min', 1000);
+      priceInput.setAttribute('placeholder', 1000);
+      break;
+    case 'bungalow':
+      priceInput.setAttribute('min', 0);
+      priceInput.setAttribute('placeholder', 0);
+      break;
+    case 'house':
+      priceInput.setAttribute('min', 5000);
+      priceInput.setAttribute('placeholder', 5000);
+      break;
+    case 'palace':
+      priceInput.setAttribute('min', 10000);
+      priceInput.setAttribute('placeholder', 10000);
+      break;
+    case 'hotel':
+      priceInput.setAttribute('min', 3000);
+      priceInput.setAttribute('placeholder', 3000);
+      break;
+  }
+});

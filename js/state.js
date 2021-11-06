@@ -24,5 +24,7 @@ const useActiveState = () => {
     item.disabled = false;
   });
 };
+useNonActiveState();
+
 
 export { useNonActiveState, useActiveState };

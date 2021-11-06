@@ -1,73 +1,74 @@
-import { useActiveState } from './state.js';
-import { createHotels } from './createHotel.js';
+import { useActiveState} from './state.js';
 import {createCustomPopup} from './popup.js';
-// import {similarHotels, similarHotelTemplate} from './popup.js'
-const address = document.querySelector('#adress');
+import {address} from './user-form.js';
+
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.6920;
 
-const map = L.map('map-canvas').on('load', () => {
-  useActiveState();
-})
-  .setView({
-    lat: TOKYO_LAT,
-    lng: TOKYO_LNG,
-  }, 10);
+const createMap = (data) => {
 
-L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  },
-).addTo(map);
+  const map = L.map('map-canvas').on('load', () => {
+    useActiveState();
+  })
+    .setView({
+      lat: TOKYO_LAT,
+      lng: TOKYO_LNG,
+    }, 10);
 
-const mainPinIcon = L.icon({
-  iconUrl: '../img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    },
+  ).addTo(map);
 
-const mainPinMarker = L.marker(
-  {
-    lat: TOKYO_LAT,
-    lng: TOKYO_LNG,
-  },
-  {
-    draggable: true,
-    icon: mainPinIcon,
-  },
-);
-
-mainPinMarker.addTo(map);
-
-
-/*massive hotels */
-const similarHotels = createHotels();
-
-similarHotels.forEach((hotel) => {
-  const icon = L.icon({
-    iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+  const mainPinIcon = L.icon({
+    iconUrl: '../img/main-pin.svg',
+    iconSize: [52, 52],
+    iconAnchor: [26, 52],
   });
 
-  const marker = L.marker(
+  const mainPinMarker = L.marker(
     {
-      lat: hotel.location.lat,
-      lng: hotel.location.lng,
+      lat: TOKYO_LAT,
+      lng: TOKYO_LNG,
     },
     {
-      icon,
+      draggable: true,
+      icon: mainPinIcon,
     },
   );
 
-  marker.addTo(map).bindPopup(createCustomPopup(hotel));
-});
+  mainPinMarker.addTo(map);
+  /*massive hotels */
 
-/*Placeholder */
+  data.forEach((hotel) => {
+    const icon = L.icon({
+      iconUrl: './img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
 
-address.setAttribute('placeholder', `${TOKYO_LAT}, ${TOKYO_LNG}`);
+    const marker = L.marker(
+      {
+        lat: hotel.location.lat,
+        lng: hotel.location.lng,
+      },
+      {
+        icon,
+      },
+    );
+    marker.addTo(map).bindPopup(createCustomPopup(hotel));
+  });
 
-mainPinMarker.on('moveend', (evt) => {
-  address.setAttribute('placeholder', `${parseFloat((evt.target.getLatLng().lat).toFixed(4))}, ${parseFloat((evt.target.getLatLng().lng)).toFixed(4)}`);
-});
+
+  /*Placeholder */
+
+  address.setAttribute('value', `${TOKYO_LAT}, ${TOKYO_LNG}`);
+
+  mainPinMarker.on('moveend', (evt) => {
+    address.setAttribute('value', `${parseFloat((evt.target.getLatLng().lat).toFixed(4))}, ${parseFloat((evt.target.getLatLng().lng)).toFixed(4)}`);
+  });
+};
+
+export {createMap};

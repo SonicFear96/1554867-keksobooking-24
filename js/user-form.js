@@ -11,8 +11,10 @@ const guestNumberInput = document.querySelector('#capacity');
 const typeAccommodation = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
+const address = document.querySelector('#address');
+// const hotelForm = document.querySelector('.ad-form');
 
-
+address.disabled = true;
 titleInput.addEventListener('input', () => {
   const valueLength = titleInput.value.length;
   if (valueLength < MIN_TITLE_LENGTH) {
@@ -29,7 +31,7 @@ priceInput.addEventListener('input', () => {
   const valuePrice = priceInput.value;
   if (valuePrice < MIN_PRICE ) {
     priceInput.setCustomValidity(`Цена не может быть ниже ${ MIN_PRICE }`);
-  } else if (valuePrice > MAX_TITLE_LENGTH) {
+  } else if (valuePrice > MAX_PRICE) {
     priceInput.setCustomValidity(`Цена не может быть выше ${ MAX_PRICE }`);
   } else {
     priceInput.setCustomValidity('');
@@ -73,24 +75,53 @@ typeAccommodation.addEventListener('change', () => {
   switch (typeAccommodation.value) {
     case 'flat':
       priceInput.setAttribute('min', 1000);
-      priceInput.setAttribute('placeholder', 1000);
+      priceInput.setAttribute('value', 1000);
       break;
     case 'bungalow':
       priceInput.setAttribute('min', 0);
-      priceInput.setAttribute('placeholder', 0);
+      priceInput.setAttribute('value', 0);
       break;
     case 'house':
       priceInput.setAttribute('min', 5000);
-      priceInput.setAttribute('placeholder', 5000);
+      priceInput.setAttribute('value', 5000);
       break;
     case 'palace':
       priceInput.setAttribute('min', 10000);
-      priceInput.setAttribute('placeholder', 10000);
+      priceInput.setAttribute('value', 10000);
       break;
     case 'hotel':
       priceInput.setAttribute('min', 3000);
-      priceInput.setAttribute('placeholder', 3000);
+      priceInput.setAttribute('value', 3000);
       break;
   }
 });
 
+
+// const setUserFormSubmit = (onSuccess) => {
+//   hotelForm.addEventListener('submit', (evt) => {
+//     evt.preventDefault();
+//     const formData = new FormData(evt.target);
+//     fetch(
+//       'https://24.javascript.pages.academy/keksobooking',
+//       {
+//         method: 'POST',
+//         body: formData,
+//       },
+//     ).then((response) => {
+//       if (response.ok) {
+//         createSuccessPopup()
+//       } else {
+//         createErrorPopup();
+//       }
+//     })
+//     .catch(() => {
+//       createErrorPopup();
+//     });
+//   });
+// };
+
+/*start  form*/
+
+// export {setUserFormSubmit};
+
+export {address};

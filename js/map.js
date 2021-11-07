@@ -67,7 +67,7 @@ const createMap = (data) => {
   address.setAttribute('value', `${TOKYO_LAT}, ${TOKYO_LNG}`);
 
   mainPinMarker.on('moveend', (evt) => {
-    address.setAttribute('value', `${parseFloat((evt.target.getLatLng().lat).toFixed(4))}, ${parseFloat((evt.target.getLatLng().lng)).toFixed(4)}`);
+    address.setAttribute('value', `${(parseFloat((evt.target.getLatLng().lat).toFixed(4)))}, ${(parseFloat((evt.target.getLatLng().lng)).toFixed(4))}`);
   });
 };
 

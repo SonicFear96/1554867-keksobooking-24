@@ -1,18 +1,34 @@
-// import {isEscapeKey} from './utils/util.js';
+import { isEscapeKey } from "./utils/util.js";
 
-// const messageError = document.querySelector('.error');
-
-
-// const onMessageEscKeydown = (evt) => {
-//   if (isEscapeKey(evt)) {
-//     evt.preventDefault();
-//     closeMessageModal();
-//   }
-// };
+const userPopupError = document.querySelector('.error');
+const userPopupSuccess = document.querySelector('.success');
 
 
-// function closeMessageModal () {
-//   messageError.classList.add('hidden');
-//   document.removeEventListener('keydown', onMessageEscKeydown);
-// };
+const useClosePopupSuccess = () => {
+  userPopupSuccess.addEventListener('click', () => {
+    userPopupSuccess.classList.add('hidden');
+  });
+}
 
+const useClosePopupError = () => {
+  userPopupError.addEventListener('click', () => {
+    userPopupError.classList.add('hidden');
+  });
+}
+
+document.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    userPopupError.classList.add('hidden');
+  }
+});
+
+document.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    userPopupSuccess.classList.add('hidden');
+  }
+});
+
+
+export { useClosePopupSuccess, useClosePopupError}

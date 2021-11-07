@@ -1,3 +1,5 @@
+import {useClosePopupError, useClosePopupSuccess} from './user-modal.js'
+
 const createCustomPopup = (hotel) => {
   const similarHotelTemplate = document.querySelector('#card').content;
   const hotelElement = similarHotelTemplate.cloneNode(true);
@@ -61,14 +63,16 @@ const createCustomPopup = (hotel) => {
   return hotelElementContainer;
 };
 
-// export {similarHotelTemplate, similarHotels};
-
+/*POPUP AND EVENTS */
+const userPopupError = document.querySelector('.error');
+const userPopupSuccess = document.querySelector('.success');
 const footer = document.querySelector('footer');
 
 const createSuccessPopup = () => {
   footer.insertAdjacentHTML('afterend', `<div class="success">
   <p class="success__message">Ваше объявление<br />успешно размещено!</p>
 </div>`);
+useClosePopupSuccess();
 };
 
 const createErrorPopup = () => {
@@ -76,6 +80,7 @@ const createErrorPopup = () => {
   <p class="error__message">Ошибка размещения объявления</p>
   <button type="button" class="error__button">Попробовать снова</button>
 </div>`);
+useClosePopupError();
 };
 
 export {createCustomPopup, createSuccessPopup, createErrorPopup};

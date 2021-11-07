@@ -1,4 +1,4 @@
-import { isEscapeKey } from "./utils/util.js";
+import { isEscapeKey } from './utils/util.js';
 
 const userPopupError = document.querySelector('.error');
 const userPopupSuccess = document.querySelector('.success');
@@ -8,13 +8,13 @@ const useClosePopupSuccess = () => {
   userPopupSuccess.addEventListener('click', () => {
     userPopupSuccess.classList.add('hidden');
   });
-}
+};
 
 const useClosePopupError = () => {
   userPopupError.addEventListener('click', () => {
     userPopupError.classList.add('hidden');
   });
-}
+};
 
 document.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
@@ -31,4 +31,4 @@ document.addEventListener('keydown', (evt) => {
 });
 
 
-export { useClosePopupSuccess, useClosePopupError}
+export { useClosePopupSuccess, useClosePopupError};

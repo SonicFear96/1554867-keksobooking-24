@@ -101,10 +101,10 @@ typeAccommodation.addEventListener('change', () => {
 
 const setUserFormSubmit = (onSuccess) => {
   hotelForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+    evt.preventDefault();
     sendData(
       () => onSuccess(),
-      () => alert('Не удалось отправить форму. Попробуйте ещё раз'),
+      // () => alert('Не удалось отправить форму. Попробуйте ещё раз'),
       new FormData(evt.target),
     );
   });

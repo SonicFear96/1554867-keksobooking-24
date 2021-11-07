@@ -1,6 +1,4 @@
-import {createSuccessPopup, createErrorPopup} from './popup.js'
-
-
+import {createSuccessPopup, createErrorPopup} from './popup.js';
 
 const getData = (onSuccess) => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')

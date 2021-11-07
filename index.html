@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <title>Кексобукинг</title>
   </head>
   <body>
@@ -186,7 +187,8 @@
               id="title"
               name="title"
               type="text"
-              minlength="30" maxlength="100"
+              minlength="30"
+              maxlength="100"
               placeholder="Милая, уютная квартирка в центре Токио"
               required
             />
@@ -195,7 +197,7 @@
             <label class="ad-form__label" for="address"
               >Адрес (координаты)</label
             >
-            <input id="address" name="address" type="text" required/>
+            <input id="address" name="address" type="text" required />
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="type">Тип жилья</label>
@@ -209,7 +211,15 @@
           </fieldset>
           <fieldset class="ad-form__element">
             <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-            <input id="price" name="price" type="number" max="1000000" placeholder="5000" required/>
+            <input
+              id="price"
+              name="price"
+              type="number"
+              min="0"
+              max="1000000"
+              placeholder="5000"
+              required
+            />
           </fieldset>
           <fieldset class="ad-form__element ad-form__element--time">
             <label class="ad-form__label" for="timein"
@@ -472,6 +482,8 @@
         <button type="button" class="error__button">Попробовать снова</button>
       </div>
     </template>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script defer type="module" src="js/main.js"></script>
+
   </body>
 </html>

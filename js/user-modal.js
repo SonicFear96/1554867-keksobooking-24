@@ -1,34 +1,35 @@
 import { isEscapeKey } from './utils/util.js';
 
-const userPopupError = document.querySelector('.error');
-const userPopupSuccess = document.querySelector('.success');
 
+// success
+const success = document.querySelector('.success');
 
-const useClosePopupSuccess = () => {
-  userPopupSuccess.addEventListener('click', () => {
-    userPopupSuccess.classList.add('hidden');
-  });
-};
-
-const useClosePopupError = () => {
-  userPopupError.addEventListener('click', () => {
-    userPopupError.classList.add('hidden');
-  });
-};
-
-document.addEventListener('keydown', (evt) => {
+const onPopupSuccessEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    userPopupError.classList.add('hidden');
+    success.classList.add('hidden');
   }
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    userPopupSuccess.classList.add('hidden');
-  }
-});
+};
 
 
-export { useClosePopupSuccess, useClosePopupError};
+function OpenPopupSuccess () {
+  success.classList.remove('hidden');
+  document.querySelector('.ad-form').reset();
+  success.addEventListener('click', () => {
+    success.classList.add('hidden');
+  });
+  success.addEventListener('keydown', onPopupSuccessEscKeydown);
+}
+
+//error
+const error = document.querySelector('.error');
+
+function OpenPopupError () {
+  error.classList.remove('hidden');
+  error.addEventListener('click', () => {
+    error.classList.add('hidden');
+  });
+}
+
+
+export {OpenPopupError, OpenPopupSuccess};

@@ -1,4 +1,5 @@
 import {sendData} from './api.js';
+import { OpenPopupError } from './user-modal.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -99,15 +100,26 @@ typeAccommodation.addEventListener('change', () => {
   }
 });
 
+//Clear
+// const buttonFormReset = document.querySelector('ad-form__reset');
+
+// const buttonClear = () => {buttonFormReset.addEventListener('click', () => {
+//   document.querySelector('.ad-form').reset();
+// });
+// };
+
+
+// post
+
 const setUserFormSubmit = (onSuccess) => {
   hotelForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     sendData(
       () => onSuccess(),
-      // () => alert('Не удалось отправить форму. Попробуйте ещё раз'),
+      () => OpenPopupError(),
       new FormData(evt.target),
     );
   });
 };
 
-export {address, setUserFormSubmit };
+export {address, setUserFormSubmit};

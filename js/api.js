@@ -16,14 +16,12 @@ const sendData = async (onSuccess, onError, body) => {
       body,
     });
     const data = await response.json();
-    if (!response.ok) {throw response}
+    if (!response.ok) {throw response;}
     onSuccess(data);
   } catch (error) {
     onError(error);
     document.querySelector('.error__status').innerHTML = `${error.status}`;
   }
 };
-
-
 
 export {getData, sendData};

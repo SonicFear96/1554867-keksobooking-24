@@ -1,4 +1,3 @@
-
 const createCustomPopup = (hotel) => {
   const similarHotelTemplate = document.querySelector('#card').content;
   const hotelElement = similarHotelTemplate.cloneNode(true);
@@ -72,7 +71,7 @@ const success = document.querySelector('.success');
 success.classList.add('hidden');
 
 footer.insertAdjacentHTML('afterend', `<div class="error">
-  <p class="error__message">Ошибка размещения объявления</p>
+  <p class="error__message">Ошибка размещения объявления (ошибка <span class="error__status">номер ошибки</span>)</p>
   <button type="button" class="error__button">Попробовать снова</button>
 </div>`);
 

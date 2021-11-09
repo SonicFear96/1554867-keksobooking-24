@@ -1,5 +1,5 @@
 import {sendData} from './api.js';
-import { OpenPopupError } from './user-modal.js';
+import { OpenPopupSuccess, OpenPopupError } from './user-modal.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -111,15 +111,27 @@ typeAccommodation.addEventListener('change', () => {
 
 // post
 
-const setUserFormSubmit = (onSuccess) => {
-  hotelForm.addEventListener('submit', (evt) => {
+// const setUserFormSubmit = (onSuccess) => {
+//   hotelForm.addEventListener('submit', (evt) => {
+//     evt.preventDefault();
+//     sendData(
+//       () => onSuccess(),
+//       () => OpenPopupError(),
+//       new FormData(evt.target),
+//     );
+//   });
+// };
+
+const setUserFormSubmit = () => {
+  hotelForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
-    sendData(
-      () => onSuccess(),
-      () => OpenPopupError(),
+    await sendData(
+      OpenPopupSuccess,
+      OpenPopupError,
       new FormData(evt.target),
     );
   });
 };
+
 
 export {address, setUserFormSubmit};

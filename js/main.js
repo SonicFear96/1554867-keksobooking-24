@@ -12,5 +12,4 @@ getData((data) => {
   createMap(data.slice(0, SIMILAR_HOTEL_COUNT));
 });
 
-
 setUserFormSubmit(OpenPopupSuccess);

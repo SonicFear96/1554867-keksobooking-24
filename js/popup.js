@@ -61,21 +61,22 @@ const createCustomPopup = (hotel) => {
   return hotelElementContainer;
 };
 
-// export {similarHotelTemplate, similarHotels};
+/*SUCCESS AND ERROR*/
 
 const footer = document.querySelector('footer');
-
-const createSuccessPopup = () => {
-  footer.insertAdjacentHTML('afterend', `<div class="success">
+footer.insertAdjacentHTML('afterend', `<div class="success">
   <p class="success__message">Ваше объявление<br />успешно размещено!</p>
 </div>`);
-};
+const success = document.querySelector('.success');
+success.classList.add('hidden');
 
-const createErrorPopup = () => {
-  footer.insertAdjacentHTML('afterend', `<div class="error">
-  <p class="error__message">Ошибка размещения объявления</p>
+footer.insertAdjacentHTML('afterend', `<div class="error">
+  <p class="error__message">Ошибка размещения объявления (ошибка <span class="error__status">номер ошибки</span>)</p>
   <button type="button" class="error__button">Попробовать снова</button>
 </div>`);
-};
 
-export {createCustomPopup, createSuccessPopup, createErrorPopup};
+const error = document.querySelector('.error');
+error.classList.add('hidden');
+
+
+export {createCustomPopup};

@@ -1,18 +1,35 @@
-// import {isEscapeKey} from './utils/util.js';
-
-// const messageError = document.querySelector('.error');
+import { isEscapeKey } from './utils/util.js';
 
 
-// const onMessageEscKeydown = (evt) => {
-//   if (isEscapeKey(evt)) {
-//     evt.preventDefault();
-//     closeMessageModal();
-//   }
-// };
+// success
+const success = document.querySelector('.success');
+
+const onPopupSuccessEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    success.classList.add('hidden');
+  }
+};
 
 
-// function closeMessageModal () {
-//   messageError.classList.add('hidden');
-//   document.removeEventListener('keydown', onMessageEscKeydown);
-// };
+function OpenPopupSuccess () {
+  success.classList.remove('hidden');
+  document.querySelector('.ad-form').reset();
+  success.addEventListener('click', () => {
+    success.classList.add('hidden');
+  });
+  success.addEventListener('keydown', onPopupSuccessEscKeydown);
+}
 
+//error
+const error = document.querySelector('.error');
+
+function OpenPopupError () {
+  error.classList.remove('hidden');
+  error.addEventListener('click', () => {
+    error.classList.add('hidden');
+  });
+}
+
+
+export {OpenPopupError, OpenPopupSuccess};

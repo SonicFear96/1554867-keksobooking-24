@@ -1,10 +1,4 @@
-// const isEscapeKey = (evt) => {
-//   return evt.key === 'Escape';
-// };
-
-// const isEnterKey = (evt) => {
-//   return evt.key === 'Enter';
-// };
+const isEscapeKey = (evt) =>  evt.key === 'Escape';
 
 
-// export {isEscapeKey, isEnterKey};
+export {isEscapeKey};

@@ -1,8 +1,12 @@
+import {sendData} from './api.js';
+import { OpenPopupSuccess, OpenPopupError } from './user-modal.js';
+
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MIN_PRICE = 0;
 const MAX_PRICE = 1000000;
 const MAX_ROOM_NUMBER = 100;
+
 
 const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
@@ -12,9 +16,9 @@ const typeAccommodation = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
-// const hotelForm = document.querySelector('.ad-form');
+const hotelForm = document.querySelector('.ad-form');
 
-address.disabled = true;
+
 titleInput.addEventListener('input', () => {
   const valueLength = titleInput.value.length;
   if (valueLength < MIN_TITLE_LENGTH) {
@@ -96,32 +100,38 @@ typeAccommodation.addEventListener('change', () => {
   }
 });
 
+//Clear
+// const buttonFormReset = document.querySelector('ad-form__reset');
+
+// const buttonClear = () => {buttonFormReset.addEventListener('click', () => {
+//   document.querySelector('.ad-form').reset();
+// });
+// };
+
+
+// post
 
 // const setUserFormSubmit = (onSuccess) => {
 //   hotelForm.addEventListener('submit', (evt) => {
 //     evt.preventDefault();
-//     const formData = new FormData(evt.target);
-//     fetch(
-//       'https://24.javascript.pages.academy/keksobooking',
-//       {
-//         method: 'POST',
-//         body: formData,
-//       },
-//     ).then((response) => {
-//       if (response.ok) {
-//         createSuccessPopup()
-//       } else {
-//         createErrorPopup();
-//       }
-//     })
-//     .catch(() => {
-//       createErrorPopup();
-//     });
+//     sendData(
+//       () => onSuccess(),
+//       () => OpenPopupError(),
+//       new FormData(evt.target),
+//     );
 //   });
 // };
 
-/*start  form*/
+const setUserFormSubmit = () => {
+  hotelForm.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    await sendData(
+      OpenPopupSuccess,
+      OpenPopupError,
+      new FormData(evt.target),
+    );
+  });
+};
 
-// export {setUserFormSubmit};
 
-export {address};
+export {address, setUserFormSubmit};

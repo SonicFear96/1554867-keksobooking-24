@@ -5,7 +5,6 @@ import './popup.js';
 import { setUserFormSubmit } from './user-form.js';
 
 getData((data) => {
-  console.log(data)
   createMap(data);
 });
 

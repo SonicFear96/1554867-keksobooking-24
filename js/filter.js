@@ -1,117 +1,72 @@
 
 
-const getFilterData = (hotel) => {
-
+const getFilterData = (data) => {
+  const ANY_VALUE = 'any';
   const LOW_COST = 10000;
   const HIGH_COST = 50000;
-  const TypeValue = document.querySelector('#housing-type').value;
-  const PriceValue = document.querySelector('#housing-price').value;
-  const RoomsValue = document.querySelector('#housing-rooms').value;
-  const GuestsValue = document.querySelector('#housing-guests').value;
+  const typeValue = document.querySelector('#housing-type').value;
+  const priceValue = document.querySelector('#housing-price').value;
+  const roomsValue = document.querySelector('#housing-rooms').value;
+  const guestsValue = document.querySelector('#housing-guests').value;
 
-  // switch (TypeValue) {
-  //   case 'flat':
-  //   hotel.offer.type === 'flat';
-  //   break;
-  //   case 'bungalow':
-  //   hotel.offer.type === 'bungalow';
-  //   break;
-  //   case 'house':
-  //   hotel.offer.type === 'house';
-  //   break;
-  //   case 'palace':
-  //   hotel.offer.type === 'palace';
-  //   break;
-  //   case 'hotel':
-  //   hotel.offer.type === 'hotel';
-  //   break;
-  //   case 'any':
-  //   hotel.offer.type;
-  //   break;
-  // }
+  const selectType = (hotel) => {
+    if (typeValue === ANY_VALUE) {
+      return true;
+    }
+    return hotel.offer.type === typeValue;
+  };
 
-  // switch (PriceValue) {
-  //   case 'low':
-  //    return hotel.offer.price <= LOW_COST;
-  //   case 'middle':
-  //   return LOW_COST <= hotel.offer.price <= HIGH_COST;
-  //   case 'high':
-  //   return HIGH_COST <= hotel.offer.price;
-  //   case 'any':
-  //   return hotel.offer.price;
-  // }
-  // switch (RoomsValue) {
-  //   case '1':
-  //   return 1 <= hotel.offer.rooms;
-  //   case '2':
-  //   return 2 <= hotel.offer.rooms;
-  //   case '3':
-  //   return 3 <= hotel.offer.rooms;
-  //   case 'any':
-  //   return hotel.offer.rooms;
-  // }
+  const selectPrice = (hotel) => {
+    switch(priceValue) {
+      case 'low':
+        return hotel.offer.price < LOW_COST;
+      case 'middle':
+        return hotel.offer.price >= LOW_COST && hotel.offer.price <= HIGH_COST;
+      case 'high':
+        return hotel.offer.price >= HIGH_COST;
+      default:
+        return true;
+    }
+  };
 
-  // switch (GuestsValue) {
-  //   case '1':
-  //   return 1 <= hotel.offer.guests
-  //   case '2':
-  //   return 2 <= hotel.offer.guests;
-  //   case '0':
-  //   return 0 === hotel.offer.guests;
-  //   case 'any':
-  //   return hotel.offer.guests;
-  // }
+  const selectRooms = (hotel) => {
+    switch(roomsValue) {
+      case '1':
+        return 1 <= hotel.offer.rooms;
+      case '2':
+        return 2 <= hotel.offer.rooms;
+      case '3':
+        return 3 <= hotel.offer.rooms;
+      default:
+        return true;
+    }
+  };
 
-  // return selectTypeValue && selectPriceValue && selectPriceValue && selectGuestsValue
-//   const RERENDER_DELAY = 500;
-// const ELEMENTS_QUANTITY = 10;
-// const ANY_RANGE = 'any';
-// const priceRange = {
-//   low: {min: 0, max: 10000},
-//   middle: {min: 10000, max: 50000},
-//   high: {min: 50000, max: 1000000},
-// };
+  const selectGuests = (hotel) => {
+    switch(guestsValue) {
+      case '0':
+        return 0 === hotel.offer.guests;
+      case '1':
+        return 1 <= hotel.offer.guests;
+      case '2':
+        return 2 <= hotel.offer.guests;
+      case '3':
+        return 3 <= hotel.offer.guests;
+      default:
+        return true;
+    }
+  };
 
-// const filterSelect = document.querySelector('.map__filters');
-// const housingSelect = filterSelect.querySelector('#housing-type');
-// const priceSelect = filterSelect.querySelector('#housing-price');
-// const roomsSelect = filterSelect.querySelector('#housing-rooms');
-// const guestsSelect = filterSelect.querySelector('#housing-guests');
+  const selectFeatures = (hotel) => {
+    const featuresInput = document.querySelectorAll('input[name="features"]:checked');
+    if (!hotel.offer.features) {
+      return false;
+    }
+    return Array.from(featuresInput).every((feature) => hotel.offer.features.includes(feature.value));
+  };
 
+  return selectType(data) && selectRooms(data) && selectGuests(data) && selectPrice(data) && selectFeatures(data) ;
 
-
-// const checkType = (element) => {
-//   if (housingSelect.value === ANY_RANGE) {
-//     return true;
-//   }
-//   return element.offer.type === housingSelect.value;
-// };
-
-// const checkNumberRooms = (element) => {
-//   if (roomsSelect.value === ANY_RANGE) {
-//     return true;
-//   }
-//   return element.offer.rooms === +roomsSelect.value;
-// };
-
-// const checkPrice = (element) => {
-//   if (priceSelect.value === ANY_RANGE) {
-//     return true;
-//   }
-//   return element.offer.price >= priceRange[priceSelect.value].min &&  element.offer.price <= priceRange[priceSelect.value].max;
-// };
-
-// const checkGuests = (element) => {
-//   if (guestsSelect.value === ANY_RANGE) {
-//     return true;
-//   }
-//   return element.offer.guests === +guestsSelect.value;
-// };
-
-// return checkType(hotel) && checkNumberRooms(hotel) && checkGuests(hotel) && checkPrice(hotel)
-}
-
-
-
+};
 
 export {getFilterData};

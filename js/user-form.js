@@ -79,23 +79,23 @@ typeAccommodation.addEventListener('change', () => {
   switch (typeAccommodation.value) {
     case 'flat':
       priceInput.setAttribute('min', 1000);
-      priceInput.setAttribute('value', 1000);
+      priceInput.setAttribute('placeholder', 1000);
       break;
     case 'bungalow':
       priceInput.setAttribute('min', 0);
-      priceInput.setAttribute('value', 0);
+      priceInput.setAttribute('placeholder', 0);
       break;
     case 'house':
       priceInput.setAttribute('min', 5000);
-      priceInput.setAttribute('value', 5000);
+      priceInput.setAttribute('placeholder', 5000);
       break;
     case 'palace':
       priceInput.setAttribute('min', 10000);
-      priceInput.setAttribute('value', 10000);
+      priceInput.setAttribute('placeholder', 10000);
       break;
     case 'hotel':
       priceInput.setAttribute('min', 3000);
-      priceInput.setAttribute('value', 3000);
+      priceInput.setAttribute('placeholder', 3000);
       break;
   }
 });

@@ -1,5 +1,7 @@
 
-const isEscapeKey = (evt) =>  evt.key === 'Escape';
+const isEscapeKey = (evt) => {
+  return evt.key === 'Escape';
+};
 
 const ALERT_SHOW_TIME = 5000;
 

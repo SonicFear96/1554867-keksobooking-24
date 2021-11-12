@@ -1,4 +1,5 @@
 import { isEscapeKey } from './utils/util.js';
+import { setInitialMap } from './map.js';
 
 
 // success
@@ -11,10 +12,10 @@ const onPopupSuccessEscKeydown = (evt) => {
   }
 };
 
-
 function OpenPopupSuccess () {
   success.classList.remove('hidden');
   document.querySelector('.ad-form').reset();
+  setInitialMap()
   success.addEventListener('click', () => {
     success.classList.add('hidden');
   });

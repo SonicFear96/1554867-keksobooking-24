@@ -100,28 +100,6 @@ typeAccommodation.addEventListener('change', () => {
   }
 });
 
-//Clear
-// const buttonFormReset = document.querySelector('ad-form__reset');
-
-// const buttonClear = () => {buttonFormReset.addEventListener('click', () => {
-//   document.querySelector('.ad-form').reset();
-// });
-// };
-
-
-// post
-
-// const setUserFormSubmit = (onSuccess) => {
-//   hotelForm.addEventListener('submit', (evt) => {
-//     evt.preventDefault();
-//     sendData(
-//       () => onSuccess(),
-//       () => OpenPopupError(),
-//       new FormData(evt.target),
-//     );
-//   });
-// };
-
 const setUserFormSubmit = () => {
   hotelForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();

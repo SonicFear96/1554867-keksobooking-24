@@ -1,7 +1,10 @@
 import { useActiveState} from './state.js';
 import {createCustomPopup} from './popup.js';
 import {address} from './user-form.js';
+import {getFilterData} from './filter.js';
+import { debounce } from './utils/debounce.js';
 
+const SIMILAR_HOTEL_COUNT = 10;
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.6920;
 
@@ -41,8 +44,9 @@ const createMap = (data) => {
 
   mainPinMarker.addTo(map);
   /*massive hotels */
+  const markerGroup = L.layerGroup().addTo(map);
 
-  data.forEach((hotel) => {
+  const createMarker = (hotel) => {
     const icon = L.icon({
       iconUrl: './img/pin.svg',
       iconSize: [40, 40],
@@ -58,9 +62,27 @@ const createMap = (data) => {
         icon,
       },
     );
-    marker.addTo(map).bindPopup(createCustomPopup(hotel));
+    marker.addTo(markerGroup).bindPopup(createCustomPopup(hotel));
+
+  };
+
+  data.slice(0, SIMILAR_HOTEL_COUNT).forEach((hotel) => {
+    createMarker(hotel);
   });
 
+  /*FILTER */
+  const selectType = document.querySelector('.map__filters');
+
+  selectType.addEventListener('change', () => {
+    // mainPinMarker.remove()
+    markerGroup.clearLayers();
+    data.filter(getFilterData).slice(0, SIMILAR_HOTEL_COUNT).forEach((hotel) => {
+      debounce(createMarker(hotel));
+    });
+  });
+
+  /*DELETE */
+  // markerGroup.clearLayers();
 
   /*Placeholder */
 

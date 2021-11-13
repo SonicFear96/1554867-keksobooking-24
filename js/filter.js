@@ -65,8 +65,7 @@ const getFilterData = (data) => {
     return Array.from(featuresInput).every((feature) => hotel.offer.features.includes(feature.value));
   };
 
-  return selectType(data) && selectRooms(data) && selectGuests(data) && selectPrice(data) && selectFeatures(data) ;
-
+  return selectType(data) && selectRooms(data) && selectGuests(data) && selectPrice(data) && selectFeatures(data);
 };
 
 export {getFilterData};

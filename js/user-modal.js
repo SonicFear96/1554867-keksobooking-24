@@ -1,41 +1,44 @@
 import { isEscapeKey } from './utils/util.js';
 import { setInitialMap } from './map.js';
 
-const success = document.querySelector('.success');
+const successElement = document.querySelector('.success');
 const onPopupSuccessEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    success.classList.add('hidden');
+    successElement.classList.add('hidden');
   }
 };
-const error = document.querySelector('.error');
+const errorElement = document.querySelector('.error');
+const errorButton = document.querySelector('.error__button');
 const onPopupErrorEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    error.classList.add('hidden');
+    errorElement.classList.add('hidden');
   }
 };
 
-
 // success
 const OpenPopupSuccess = () => {
-  success.classList.remove('hidden');
+  successElement.classList.remove('hidden');
   document.querySelector('.ad-form').reset();
-  setInitialMap()
-  success.addEventListener('click', () => {
-    success.classList.add('hidden');
+  setInitialMap();
+  successElement.addEventListener('click', () => {
+    successElement.classList.add('hidden');
   });
   document.addEventListener('keydown', onPopupSuccessEscKeydown);
-}
+};
 
 //error
-const OpenPopupError = () => {
-  error.classList.remove('hidden');
-  error.addEventListener('click', () => {
-    error.classList.add('hidden');
+const OpenPopupError = (error) => {
+  console.log(error);
+  errorElement.classList.remove('hidden');
+  errorElement.addEventListener('click', () => {
+    errorElement.classList.add('hidden');
+  });
+  errorButton.addEventListener('click', () => {
+    errorElement.classList.add('hidden');
   });
   document.addEventListener('keydown', onPopupErrorEscKeydown);
-}
+};
 
-
-export {OpenPopupError, OpenPopupSuccess};
+export { OpenPopupError, OpenPopupSuccess };

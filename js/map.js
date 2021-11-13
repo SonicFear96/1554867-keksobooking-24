@@ -7,9 +7,9 @@ import { debounce } from "./utils/debounce.js";
 const SIMILAR_HOTEL_COUNT = 10;
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.692;
-const selectType = document.querySelector(".map__filters");
+const mapFilters = document.querySelector(".map__filters");
 
-let map = L.map("map-canvas")
+const map = L.map("map-canvas")
   .on("load", () => {
     useActiveState();
   })
@@ -70,8 +70,9 @@ const createMarkerMap = (data) => {
     createMarker(hotel);
   });
 
+
   /*FILTER */
-  selectType.addEventListener("change", () => {
+  mapFilters.addEventListener("change", () => {
     markerGroup.clearLayers();
     data
       .filter(getFilterData)
@@ -79,6 +80,10 @@ const createMarkerMap = (data) => {
       .forEach((hotel) => {
         debounce(createMarker(hotel));
       });
+      mapFilters.addEventListener ('reset', () => {
+        markerGroup.clearLayers();
+        createMarkerMap(data)
+      })
   });
 
   /*DELETE */
@@ -99,10 +104,6 @@ const createMarkerMap = (data) => {
 };
 
 const setInitialMap = () => {
-  // if (map) {
-  //   map.remove();
-  // }
-
   mainPinMarker.setLatLng({
     lat: TOKYO_LAT,
     lng: TOKYO_LNG,
@@ -114,7 +115,7 @@ const setInitialMap = () => {
     },
     10
   );
-  document.querySelector(".map__filters").reset();
+  mapFilters.reset();
 };
 
-export { createMarkerMap, setInitialMap };
+export { createMarkerMap, setInitialMap, mapFilters };

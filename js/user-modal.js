@@ -21,7 +21,7 @@ const onPopupErrorEscKeydown = (evt) => {
 const OpenPopupSuccess = () => {
   successElement.classList.remove('hidden');
   document.querySelector('.ad-form').reset();
-  setInitialMap();
+  setInitialMap()
   successElement.addEventListener('click', () => {
     successElement.classList.add('hidden');
   });

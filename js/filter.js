@@ -1,5 +1,4 @@
 
-
 const getFilterData = (data) => {
   const ANY_VALUE = 'any';
   const LOW_COST = 10000;

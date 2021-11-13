@@ -1,7 +1,6 @@
 import { sendData } from './api.js';
 import { OpenPopupSuccess, OpenPopupError } from './user-modal.js';
 
-
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MIN_PRICE = 0;

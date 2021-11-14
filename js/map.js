@@ -1,16 +1,16 @@
-import { useActiveState } from "./state.js";
-import { createCustomPopup } from "./popup.js";
-import { address } from "./user-form.js";
-import { getFilterData } from "./filter.js";
-import { debounce } from "./utils/debounce.js";
+import { useActiveState } from './state.js';
+import { createCustomPopup } from './popup.js';
+import { address } from './user-form.js';
+import { getFilterData } from './filter.js';
+import { debounce } from './utils/debounce.js';
 
 const SIMILAR_HOTEL_COUNT = 10;
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.692;
-const mapFilters = document.querySelector(".map__filters");
+const mapFilters = document.querySelector('.map__filters');
 
-const map = L.map("map-canvas")
-  .on("load", () => {
+const map = L.map('map-canvas')
+  .on('load', () => {
     useActiveState();
   })
   .setView(
@@ -18,15 +18,15 @@ const map = L.map("map-canvas")
       lat: TOKYO_LAT,
       lng: TOKYO_LNG,
     },
-    10
+    10,
   );
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
 const mainPinIcon = L.icon({
-  iconUrl: "../img/main-pin.svg",
+  iconUrl: '../img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
@@ -39,7 +39,7 @@ const mainPinMarker = L.marker(
   {
     draggable: true,
     icon: mainPinIcon,
-  }
+  },
 );
 
 mainPinMarker.addTo(map);
@@ -48,7 +48,7 @@ const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (hotel) => {
   const icon = L.icon({
-    iconUrl: "./img/pin.svg",
+    iconUrl: './img/pin.svg',
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
@@ -60,7 +60,7 @@ const createMarker = (hotel) => {
     },
     {
       icon,
-    }
+    },
   );
   marker.addTo(markerGroup).bindPopup(createCustomPopup(hotel));
 };
@@ -72,7 +72,7 @@ const createMarkerMap = (data) => {
 
 
   /*FILTER */
-  mapFilters.addEventListener("change", () => {
+  mapFilters.addEventListener('change', () => {
     markerGroup.clearLayers();
     data
       .filter(getFilterData)
@@ -80,10 +80,10 @@ const createMarkerMap = (data) => {
       .forEach((hotel) => {
         debounce(createMarker(hotel));
       });
-      mapFilters.addEventListener ('reset', () => {
-        markerGroup.clearLayers();
-        createMarkerMap(data)
-      })
+    mapFilters.addEventListener ('reset', () => {
+      markerGroup.clearLayers();
+      createMarkerMap(data);
+    });
   });
 
   /*DELETE */
@@ -91,14 +91,14 @@ const createMarkerMap = (data) => {
 
   /*Placeholder */
 
-  address.setAttribute("value", `${TOKYO_LAT}, ${TOKYO_LNG}`);
+  address.setAttribute('value', `${TOKYO_LAT}, ${TOKYO_LNG}`);
 
-  mainPinMarker.on("moveend", (evt) => {
+  mainPinMarker.on('moveend', (evt) => {
     address.setAttribute(
-      "value",
+      'value',
       `${parseFloat(evt.target.getLatLng().lat.toFixed(4))}, ${parseFloat(
-        evt.target.getLatLng().lng
-      ).toFixed(4)}`
+        evt.target.getLatLng().lng,
+      ).toFixed(4)}`,
     );
   });
 };
@@ -113,7 +113,7 @@ const setInitialMap = () => {
       lat: TOKYO_LAT,
       lng: TOKYO_LNG,
     },
-    10
+    10,
   );
   mapFilters.reset();
 };

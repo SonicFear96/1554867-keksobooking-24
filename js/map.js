@@ -80,10 +80,10 @@ const createMarkerMap = (data) => {
       .forEach((hotel) => {
         debounce(createMarker(hotel));
       });
-    mapFilters.addEventListener ('reset', () => {
+    mapFilters.addEventListener('reset', () => {
       markerGroup.clearLayers();
       createMarkerMap(data);
-    });
+    }, { once: true });
   });
 
   /*DELETE */

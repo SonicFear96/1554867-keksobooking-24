@@ -1,7 +1,7 @@
 const getData = async (onSuccess, onError) => {
   try {
     const response = await fetch(
-      'https://24.javascript.pages.academy/keksobooking/data',
+      'https://24.javascript.pages.academy/keksobooking/data44',
     );
     if (!response.ok) {
       throw response;

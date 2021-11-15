@@ -422,6 +422,13 @@
         </li>
       </ul>
     </footer>
+    <div class="success hidden">
+      <p class="success__message">Ваше объявление<br />успешно размещено!</p>
+    </div>
+    <div class="error hidden">
+      <p class="error__message">Ошибка размещения объявления</p>
+      <button type="button" class="error__button">Попробовать снова</button>
+    </div>
 
     <!-- Карточка объявления -->
     <template id="card">
@@ -469,19 +476,19 @@
     </template>
 
     <!-- Сообщение об успешном создании объявления -->
-    <template id="success">
+    <!-- <template id="success">
       <div class="success">
         <p class="success__message">Ваше объявление<br />успешно размещено!</p>
       </div>
-    </template>
+    </template> -->
 
     <!-- Сообщение об ошибке создания объявления -->
-    <template id="error">
+    <!-- <template id="error">
       <div class="error">
         <p class="error__message">Ошибка размещения объявления</p>
         <button type="button" class="error__button">Попробовать снова</button>
       </div>
-    </template>
+    </template> -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script defer type="module" src="js/main.js"></script>
 

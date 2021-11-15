@@ -1,5 +1,6 @@
+const similarHotelTemplate = document.querySelector('#card').content;
+
 const createCustomPopup = (hotel) => {
-  const similarHotelTemplate = document.querySelector('#card').content;
   const hotelElement = similarHotelTemplate.cloneNode(true);
   hotelElement.querySelector('.popup__title').textContent = hotel.offer.title;
   hotelElement.querySelector('.popup__text--address').textContent = hotel.offer.address;
@@ -63,20 +64,20 @@ const createCustomPopup = (hotel) => {
 
 /*SUCCESS AND ERROR*/
 
-const footer = document.querySelector('footer');
-footer.insertAdjacentHTML('afterend', `<div class="success">
-  <p class="success__message">Ваше объявление<br />успешно размещено!</p>
-</div>`);
-const success = document.querySelector('.success');
-success.classList.add('hidden');
+// const footer = document.querySelector('footer');
+// footer.insertAdjacentHTML('afterend', `<div class="success">
+//   <p class="success__message">Ваше объявление<br />успешно размещено!</p>
+// </div>`);
+// const success = document.querySelector('.success');
+// success.classList.add('hidden');
 
-footer.insertAdjacentHTML('afterend', `<div class="error">
-  <p class="error__message">Ошибка размещения объявления (ошибка <span class="error__status">номер ошибки</span>)</p>
-  <button type="button" class="error__button">Попробовать снова</button>
-</div>`);
+// footer.insertAdjacentHTML('afterend', `<div class="error">
+//   <p class="error__message">Ошибка размещения объявления (ошибка <span class="error__status">номер ошибки</span>)</p>
+//   <button type="button" class="error__button">Попробовать снова</button>
+// </div>`);
 
-const error = document.querySelector('.error');
-error.classList.add('hidden');
+// const error = document.querySelector('.error');
+// error.classList.add('hidden');
 
 
 export {createCustomPopup};

@@ -1,4 +1,5 @@
 import { sendData } from './api.js';
+import { adForm } from './use-state.js';
 import { OpenPopupSuccess, OpenPopupError } from './user-modal.js';
 
 const MIN_TITLE_LENGTH = 30;
@@ -16,7 +17,6 @@ const typeAccommodation = document.querySelector('#type');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const address = document.querySelector('#address');
-const hotelForm = document.querySelector('.ad-form');
 
 
 titleInput.addEventListener('input', () => {
@@ -61,16 +61,16 @@ guestNumberInput.addEventListener('change', onSelectRoomChange);
 
 /*time in/time out*/
 
-const getSameTimeIn = () => {
-  timeIn.value = timeOut.value;
+const onTimeChange = (evt) => {
+  if (evt.target === timeIn) {
+    timeOut.value = timeIn.value;
+  }
+  else if (evt.target === timeOut) {
+    timeIn.value = timeOut.value;
+  }
 };
 
-const getSameTimeOut = () => {
-  timeOut.value = timeIn.value;
-};
-
-timeIn.addEventListener('change', getSameTimeOut);
-timeOut.addEventListener('change', getSameTimeIn);
+adForm.addEventListener('change', onTimeChange);
 
 /*TYPE */
 
@@ -100,7 +100,7 @@ typeAccommodation.addEventListener('change', () => {
 });
 
 const setUserFormSubmit = () => {
-  hotelForm.addEventListener('submit', async (evt) => {
+  adForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     await sendData(
       OpenPopupSuccess,

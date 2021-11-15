@@ -1,8 +1,9 @@
+const ANY_VALUE = 'any';
+const LOW_COST = 10000;
+const HIGH_COST = 50000;
+
 
 const getFilterData = (data) => {
-  const ANY_VALUE = 'any';
-  const LOW_COST = 10000;
-  const HIGH_COST = 50000;
   const typeValue = document.querySelector('#housing-type').value;
   const priceValue = document.querySelector('#housing-price').value;
   const roomsValue = document.querySelector('#housing-rooms').value;

@@ -1,4 +1,4 @@
-import './state.js';
+import './use-state.js';
 import { createMarkerMap } from './map.js';
 import './map.js';
 import { getData } from './api.js';
@@ -8,9 +8,7 @@ import { showAlert } from './utils/util.js';
 import './user-modal.js';
 
 getData(
-  (data) => {
-    createMarkerMap(data);
-  },
+  createMarkerMap,
   () => {
     showAlert('Не удалось загрузить карту. Попробуйте ещё раз');
   },

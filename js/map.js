@@ -1,4 +1,4 @@
-import { useActiveState } from './state.js';
+import { useActiveState } from './use-state.js';
 import { createCustomPopup } from './popup.js';
 import { address } from './user-form.js';
 import { getFilterData } from './filter.js';
@@ -9,17 +9,13 @@ const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.692;
 const mapFilters = document.querySelector('.map__filters');
 
-const map = L.map('map-canvas')
-  .on('load', () => {
-    useActiveState();
-  })
-  .setView(
-    {
-      lat: TOKYO_LAT,
-      lng: TOKYO_LNG,
-    },
-    10,
-  );
+const map = L.map('map-canvas').on('load', useActiveState).setView(
+  {
+    lat: TOKYO_LAT,
+    lng: TOKYO_LNG,
+  },
+  10,
+);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -70,7 +66,6 @@ const createMarkerMap = (data) => {
     createMarker(hotel);
   });
 
-
   /*FILTER */
   mapFilters.addEventListener('change', () => {
     markerGroup.clearLayers();
@@ -80,10 +75,14 @@ const createMarkerMap = (data) => {
       .forEach((hotel) => {
         debounce(createMarker(hotel));
       });
-    mapFilters.addEventListener('reset', () => {
-      markerGroup.clearLayers();
-      createMarkerMap(data);
-    }, { once: true });
+    mapFilters.addEventListener(
+      'reset',
+      () => {
+        markerGroup.clearLayers();
+        createMarkerMap(data);
+      },
+      { once: true },
+    );
   });
 
   /*DELETE */

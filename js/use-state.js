@@ -26,5 +26,4 @@ const useActiveState = () => {
 };
 useNonActiveState();
 
-
 export { useNonActiveState, useActiveState, adForm };

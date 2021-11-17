@@ -10,7 +10,7 @@ import './user-modal.js';
 getData(
   createMarkerMap,
   () => {
-    showAlert('Не удалось загрузить карту. Попробуйте ещё раз');
+    showAlert('Не удалось загрузить Объявления. Попробуйте ещё раз');
   },
 );
 

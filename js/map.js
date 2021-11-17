@@ -8,8 +8,12 @@ const SIMILAR_HOTEL_COUNT = 10;
 const TOKYO_LAT = 35.6895;
 const TOKYO_LNG = 139.692;
 const mapFilters = document.querySelector('.map__filters');
+const MAIN_ICON_SIZE = [52, 52];
+const MAIN_ICON_ANCHOR = [26, 52];
+const ICON_SIZE = [40, 40];
+const ICON_ANCHOR = [20, 40];
 
-const map = L.map('map-canvas').on('load', useActiveState).setView(
+const map = L.map('map-canvas').setView(
   {
     lat: TOKYO_LAT,
     lng: TOKYO_LNG,
@@ -23,8 +27,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const mainPinIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: MAIN_ICON_SIZE,
+  iconAnchor: MAIN_ICON_ANCHOR,
 });
 
 const mainPinMarker = L.marker(
@@ -45,8 +49,8 @@ const markerGroup = L.layerGroup().addTo(map);
 const createMarker = (hotel) => {
   const icon = L.icon({
     iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: ICON_SIZE,
+    iconAnchor: ICON_ANCHOR,
   });
 
   const marker = L.marker(
@@ -64,6 +68,7 @@ const createMarker = (hotel) => {
 const createMarkerMap = (data) => {
   data.slice(0, SIMILAR_HOTEL_COUNT).forEach((hotel) => {
     createMarker(hotel);
+    useActiveState();
   });
 
   /*FILTER */

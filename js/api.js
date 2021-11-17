@@ -1,7 +1,7 @@
 const getData = async (onSuccess, onError) => {
   try {
     const response = await fetch(
-      'https://24.javascript.pages.academy/keksobooking/data44',
+      'https://24.javascript.pages.academy/keksobooking/data',
     );
     if (!response.ok) {
       throw response;
@@ -29,7 +29,7 @@ const sendData = async (onSuccess, onError, body) => {
     onSuccess(data);
   } catch (error) {
     onError(error);
-    document.querySelector('.error__status').innerHTML = `${error.status}`;
+    document.querySelector('.error__status').textContent = `(ошибка ${error.status})`;
   }
 };
 

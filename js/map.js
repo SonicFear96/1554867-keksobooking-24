@@ -1,4 +1,4 @@
-import { useActiveState } from './use-state.js';
+import {  useActiveStateForm, useActiveStateMap } from './use-state.js';
 import { createCustomPopup } from './popup.js';
 import { address } from './user-form.js';
 import { getFilterData } from './filter.js';
@@ -13,7 +13,7 @@ const MAIN_ICON_ANCHOR = [26, 52];
 const ICON_SIZE = [40, 40];
 const ICON_ANCHOR = [20, 40];
 
-const map = L.map('map-canvas').setView(
+const map = L.map('map-canvas').on('load', useActiveStateForm).setView(
   {
     lat: TOKYO_LAT,
     lng: TOKYO_LNG,
@@ -44,6 +44,17 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
+address.setAttribute('value', `${TOKYO_LAT}, ${TOKYO_LNG}`);
+
+mainPinMarker.on('moveend', (evt) => {
+  address.setAttribute(
+    'value',
+    `${parseFloat(evt.target.getLatLng().lat.toFixed(4))}, ${parseFloat(
+      evt.target.getLatLng().lng,
+    ).toFixed(4)}`,
+  );
+});
+
 const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (hotel) => {
@@ -68,7 +79,7 @@ const createMarker = (hotel) => {
 const createMarkerMap = (data) => {
   data.slice(0, SIMILAR_HOTEL_COUNT).forEach((hotel) => {
     createMarker(hotel);
-    useActiveState();
+    useActiveStateMap();
   });
 
   /*FILTER */
@@ -87,22 +98,6 @@ const createMarkerMap = (data) => {
         createMarkerMap(data);
       },
       { once: true },
-    );
-  });
-
-  /*DELETE */
-  // markerGroup.clearLayers();
-
-  /*Placeholder */
-
-  address.setAttribute('value', `${TOKYO_LAT}, ${TOKYO_LNG}`);
-
-  mainPinMarker.on('moveend', (evt) => {
-    address.setAttribute(
-      'value',
-      `${parseFloat(evt.target.getLatLng().lat.toFixed(4))}, ${parseFloat(
-        evt.target.getLatLng().lng,
-      ).toFixed(4)}`,
     );
   });
 };

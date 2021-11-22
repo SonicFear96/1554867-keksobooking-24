@@ -14,8 +14,7 @@ const useNonActiveState = () => {
   });
 };
 
-const useActiveState = () => {
-  adForm.classList.remove('ad-form--disabled');
+const useActiveStateMap = () => {
   mapFilters.classList.remove('map__filters--disabled');
   adFormFields.forEach((item) => {
     item.disabled = false;
@@ -24,6 +23,14 @@ const useActiveState = () => {
     item.disabled = false;
   });
 };
+
+const useActiveStateForm = () => {
+  adForm.classList.remove('ad-form--disabled');
+  adFormFields.forEach((item) => {
+    item.disabled = false;
+  });
+};
+
 useNonActiveState();
 
-export { useNonActiveState, useActiveState, adForm };
+export { useNonActiveState, useActiveStateMap, useActiveStateForm, adForm };

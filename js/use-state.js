@@ -16,9 +16,6 @@ const useNonActiveState = () => {
 
 const useActiveStateMap = () => {
   mapFilters.classList.remove('map__filters--disabled');
-  adFormFields.forEach((item) => {
-    item.disabled = false;
-  });
   mapFiltersFields.forEach((item) => {
     item.disabled = false;
   });
